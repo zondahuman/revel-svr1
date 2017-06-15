@@ -44,8 +44,8 @@ The directory structure of a generated Revel application:
 
 go get github.com/revel/revel
 go get github.com/revel/cmd/revel
-revel new myapp
-revel run myapp
+revel new revel-svr1
+revel run revel-svr1
 
 打开浏览器访问 http://localhost:9000
 
