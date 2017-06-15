@@ -41,13 +41,11 @@ The directory structure of a generated Revel application:
 * The [Revel sample apps](http://revel.github.io/examples/index.html).
 * The [API documentation](https://godoc.org/github.com/revel/revel).
 
-1、安装 Revel 框架
-$ go get github.com/revel/revel
-2、安装 Revel 命令行工具
-$ go get github.com/revel/cmd/revel
-3、创建 Revel 应用
-$ revel new myapp
-$ revel run myapp
+
+go get github.com/revel/revel
+go get github.com/revel/cmd/revel
+revel new myapp
+revel run myapp
 
 打开浏览器访问 http://localhost:9000
 
