@@ -21,6 +21,8 @@ func init() {
 	Gdb.DB().SetMaxOpenConns(100)
 	Gdb.LogMode(true)
 	// 自动迁移表，生成的表名为 products
-	Gdb.AutoMigrate(&model.OrderInfo{})
+	Gdb.Model(&model.OrderInfo{})
 	//Gdb.AutoMigrate(&model.OrderInfo{})
+	// Add table suffix when create tables
+	//Gdb.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&model.OrderInfo{})
 }
