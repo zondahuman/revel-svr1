@@ -3,7 +3,7 @@ package connect
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
-	"revel-svr1/app/model"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 var Gdb *gorm.DB
@@ -20,8 +20,11 @@ func init() {
 	Gdb.DB().SetMaxIdleConns(10)
 	Gdb.DB().SetMaxOpenConns(100)
 	Gdb.LogMode(true)
+	//忽略默认的表明追加s
+	Gdb.SingularTable(true)
 	// 自动迁移表，生成的表名为 products
-	Gdb.Model(&model.OrderInfo{})
+	//Gdb.Model(&model.OrderInfo{})
+	//Gdb.Table("order_info")
 	//Gdb.AutoMigrate(&model.OrderInfo{})
 	// Add table suffix when create tables
 	//Gdb.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&model.OrderInfo{})
