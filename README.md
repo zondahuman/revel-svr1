@@ -51,6 +51,7 @@ revel run revel-svr1
 
 http://gorevel.u.qiniudn.com/docs/index.html
 
+go get -u github.com/jinzhu/gorm
 
 
 
