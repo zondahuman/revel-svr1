@@ -19,4 +19,4 @@ GET     /public/*filepath                       Static.Serve("public")
 *       /:controller/:action                    :controller.:action
 
 
-GET   /add                                       App.add
+GET   /OrderAdd                                       OrderInfoController.OrderAdd

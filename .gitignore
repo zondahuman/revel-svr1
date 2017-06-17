@@ -19,7 +19,8 @@ pkg
 velocity.log*
 *.tmp
 .tmp
-
+.idea
+.idea/
 
 
 
