@@ -18,3 +18,32 @@ func FindOrderById(id int) model.OrderInfo {
 	return modelInfo
 }
 
+
+
+func FindOrderAll() []model.OrderInfo {
+	modelInfoList  := dao.FindOrderAll()
+	return modelInfoList
+}
+
+func UpdateOrderInfo(id int, name string, age int, version int)  {
+	currentTime := time.Now()
+	modelInfo  := model.OrderInfo{Id:id, Name:name, Age:age, CreateTime:currentTime, UpdateTime:currentTime, Version:version}
+	dao.UpdateOrderInfo(modelInfo)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

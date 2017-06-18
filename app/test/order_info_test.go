@@ -35,18 +35,18 @@ func Test_FindOrderById(t *testing.T) {
 
 
 func Test_FindOrderAll(t *testing.T) {
-	httpUrl := "http://localhost:8100/order/FindOrderAll?id=59"
+	httpUrl := "http://localhost:9000/FindOrderAll"
 	result := common.HttpGet(httpUrl)
 	fmt.Println("result=", result)
 }
 
-func Test_UpdateOrder(t *testing.T) {
-	httpUrl := "http://localhost:8100/order/UpdateOrder"
-	request := make(map[string]interface{})
-	request["Id"] = 64
-	request["Name"] = "abin29"
-	request["Age"] = 29
-	request["Version"] = 5
+func Test_UpdateOrderInfo(t *testing.T) {
+	httpUrl := "http://localhost:9000/UpdateOrderInfo"
+	request := make(map[string]string)
+	request["Id"] = "72"
+	request["name"] = "abin72"
+	request["age"] = "72"
+	request["version"] = "72"
 
 	json, err := json.Marshal(request)
 	if err != nil {

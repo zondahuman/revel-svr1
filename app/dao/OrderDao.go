@@ -66,3 +66,56 @@ func FindOrderById (id int) model.OrderInfo{
 	fmt.Println("orderInfo=", orderInfo, ", db.Close()")
 	return orderInfo
 }
+
+func FindOrderAll () []model.OrderInfo{
+	db := connect.Gdb
+	fmt.Println("db=", db)
+	tx := db.Begin()
+	var orderInfoList []model.OrderInfo
+	db.Find(&orderInfoList)
+	tx.Commit()
+	db.Close()
+	fmt.Println("orderInfoList=", orderInfoList, ", db.Close()")
+	return orderInfoList
+}
+
+func UpdateOrderInfo(modelInfo model.OrderInfo) {
+	fmt.Println("modelInfo=", modelInfo)
+	db := connect.Gdb
+	fmt.Println("modelInfo=", modelInfo, "db=", db)
+	tx := db.Begin()
+
+	if err := tx.Update(&modelInfo).Error; err != nil {
+		tx.Rollback()
+		panic(err)
+	}
+	tx.Commit()
+	db.Close()
+	fmt.Println("modelInfo=", modelInfo, ", db.Close()")
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

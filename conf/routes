@@ -21,3 +21,5 @@ GET     /public/*filepath                       Static.Serve("public")
 
 POST   /OrderAdd                                       OrderInfoController.OrderAdd
 GET   /FindOrderById                                       OrderInfoController.FindOrderById
+GET   /FindOrderAll                                       OrderInfoController.FindOrderAll
+POST   /UpdateOrderInfo                                       OrderInfoController.UpdateOrderInfo
