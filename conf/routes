@@ -19,4 +19,5 @@ GET     /public/*filepath                       Static.Serve("public")
 *       /:controller/:action                    :controller.:action
 
 
-GET   /OrderAdd                                       OrderInfoController.OrderAdd
+POST   /OrderAdd                                       OrderInfoController.OrderAdd
+GET   /FindOrderById                                       OrderInfoController.FindOrderById

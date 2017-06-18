@@ -54,35 +54,21 @@ func httpPost(httpUrl string) {
 	fmt.Println(string(body))
 }
 
-func httpPostForm(httpUrl string, request map[string]string) string {
-	resp, err := http.PostForm(httpUrl,
-		url.Values{})
-
-	if err != nil {
-		// handle error
-	}
-
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		// handle error
-	}
-
-	var result = string(body)
-	return result
-
-}
-
-func httpDo(httpUrl string) {
+func HttpPostForm(httpUrl string, params map[string]string, headers map[string]string) string {
 	client := &http.Client{}
 
-	req, err := http.NewRequest("POST", httpUrl, strings.NewReader("name=cjb"))
-	if err != nil {
-		// handle error
+	var request = url.Values{}
+	for k, v := range params {
+		request.Add(k, v)
 	}
 
+	data := request.Encode()
+
+	req, err := http.NewRequest("POST", httpUrl, strings.NewReader(data))
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	req.Header.Set("Cookie", "name=anny")
+	for k, v := range headers {
+		req.Header.Set(k, v)
+	}
 
 	resp, err := client.Do(req)
 
@@ -90,10 +76,37 @@ func httpDo(httpUrl string) {
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		// handle error
+		panic("no value for $USER")
+	}
+	fmt.Println(json.Marshal(body))
+	var result = string(body)
+	return result
+}
+
+func HttpPostFormNoHeader(httpUrl string, params map[string]string) string {
+	client := &http.Client{}
+
+	var request = url.Values{}
+	for k, v := range params {
+		request.Add(k, v)
 	}
 
-	fmt.Println(string(body))
+	data := request.Encode()
+
+	req, err := http.NewRequest("POST", httpUrl, strings.NewReader(data))
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+
+	resp, err := client.Do(req)
+
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic("no value for $USER")
+	}
+	fmt.Println(json.Marshal(body))
+	var result = string(body)
+	return result
 }
 
 func HttpPostFormByCookie(params map[string]string, headers map[string]string, httpUrl string, httpLoginUrl string) string {

@@ -52,3 +52,17 @@ func AddOrderInfo(modelInfo model.OrderInfo) {
 	fmt.Println("modelInfo=", modelInfo, ", db.Close()")
 
 }
+
+
+func FindOrderById (id int) model.OrderInfo{
+	fmt.Println("id=", id)
+	db := connect.Gdb
+	fmt.Println("id=", id, "db=", db)
+	tx := db.Begin()
+	var orderInfo model.OrderInfo
+	db.First(&orderInfo, id)
+	tx.Commit()
+	db.Close()
+	fmt.Println("orderInfo=", orderInfo, ", db.Close()")
+	return orderInfo
+}

@@ -7,39 +7,23 @@ import (
 	"revel-svr1/app/util"
 )
 
-func Test_AddOrderInfo(t *testing.T) {
-	httpUrl := "http://localhost:8100/order/AddOrderInfo"
-	request := make(map[string]interface{})
-	request["Id"] = 1
-	request["Name"] = "abin1"
-	request["Age"] = 23
-
-	json, err := json.Marshal(request)
-	if err != nil {
-		fmt.Println("error:", err)
-	}
+func Test_OrderAdd(t *testing.T) {
+	httpUrl := "http://localhost:9000/OrderAdd"
+	request := make(map[string]string)
+	request["Id"] = "1"
+	request["name"] = "abin1"
+	request["age"] = "24"
 
 	header := make(map[string]string)
 	header["Cookie"] = "JSESSION:1245566"
 	header["Source"] = "BBC"
-	//result := common.HttpPost(request, header, httpUrl)
-	result := common.HttpPostJson(string(json), header, httpUrl)
+	result := common.HttpPostForm(httpUrl,request, header)
+	//result := common.HttpPostJson(string(json), header, httpUrl)
 	fmt.Println("result=", result)
 }
 
 func Test_FindOrderById(t *testing.T) {
-	httpUrl := "http://localhost:8100/order/FindOrderById?id=59"
-	//httpUrl := "http://localhost:8080/business/FindById/59"
-	request := make(map[string]interface{})
-	request["Id"] = 1
-	request["Name"] = "abin1"
-	request["Age"] = 23
-
-
-	//json, err := json.Marshal(request)
-	//if err != nil {
-	//    fmt.Println("error:", err)
-	//}
+	httpUrl := "http://localhost:9000/FindOrderById?id=72"
 
 	header := make(map[string]string)
 	header["Cookie"] = "JSESSION:1245566"

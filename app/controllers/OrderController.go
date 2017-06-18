@@ -4,6 +4,7 @@ import (
 	"github.com/revel/revel"
 	"revel-svr1/app/service"
 	"fmt"
+	"encoding/json"
 )
 
 
@@ -22,6 +23,18 @@ func (this OrderInfoController) OrderAdd(name string, age int) revel.Result {
 	return this.RenderText("hi,"+name)
 }
 
+func (this OrderInfoController) FindOrderById(id int) revel.Result {
+	fmt.Println("id=",id)
+	modelInfo := service.FindOrderById(id)
+	json, err := json.Marshal(modelInfo)
+	fmt.Println("id=",id, "json=",json)
+	if err != nil {
+	    panic(err)
+	}
+	result := string(json)
+	fmt.Println("id=",id, "result=",result)
+	return this.RenderText(result)
+}
 
 
 
