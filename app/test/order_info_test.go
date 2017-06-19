@@ -3,7 +3,6 @@ package tests
 import (
 	"testing"
 	"fmt"
-	"encoding/json"
 	"revel-svr1/app/util"
 )
 
@@ -43,46 +42,34 @@ func Test_FindOrderAll(t *testing.T) {
 func Test_UpdateOrderInfo(t *testing.T) {
 	httpUrl := "http://localhost:9000/UpdateOrderInfo"
 	request := make(map[string]string)
-	request["Id"] = "72"
+	request["id"] = "72"
 	request["name"] = "abin72"
 	request["age"] = "72"
 	request["version"] = "72"
 
-	json, err := json.Marshal(request)
-	if err != nil {
-		fmt.Println("error:", err)
-	}
+	header := make(map[string]string)
+	header["Cookie"] = "JSESSION:1245566"
+	header["Source"] = "BBC"
+	result := common.HttpPostForm(httpUrl,request, header)
+	fmt.Println("result=", result)
+}
+
+
+func Test_DeleteOrderById(t *testing.T) {
+	httpUrl := "http://localhost:9000/DeleteOrderById"
+	request := make(map[string]string)
+	request["id"] = "54"
 
 	header := make(map[string]string)
 	header["Cookie"] = "JSESSION:1245566"
 	header["Source"] = "BBC"
-	result := common.HttpPostJson(string(json), header, httpUrl)
+	result := common.HttpPostForm(httpUrl,request, header)
 	fmt.Println("result=", result)
 }
 
 
 
-func Test_Bool1(t *testing.T) {
-	var flag bool
-	flag = true
-	if flag {
-		fmt.Println("flag====true")
-	}else{
-		fmt.Println("flag====false")
-	}
-	fmt.Println("flag=", flag)
-}
 
-func Test_Bool2(t *testing.T) {
-	var flag bool
-	flag = true
-	if flag==true {
-		fmt.Println("flag====true")
-	}else{
-		fmt.Println("flag====false")
-	}
-	fmt.Println("flag=", flag)
-}
 
 
 

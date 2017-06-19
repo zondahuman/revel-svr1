@@ -31,7 +31,9 @@ func UpdateOrderInfo(id int, name string, age int, version int)  {
 	dao.UpdateOrderInfo(modelInfo)
 }
 
-
+func DeleteOrderById(id int)  {
+	dao.DeleteOrderById(id)
+}
 
 
 

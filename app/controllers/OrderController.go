@@ -5,6 +5,7 @@ import (
 	"revel-svr1/app/service"
 	"fmt"
 	"encoding/json"
+	"strconv"
 )
 
 
@@ -60,6 +61,18 @@ func (this OrderInfoController) UpdateOrderInfo(id int,name string, age int, ver
 	return this.RenderText("hi,"+name)
 }
 
+
+func (this OrderInfoController) DeleteOrderById(id int ) revel.Result {
+	fmt.Println("id=",id)
+	service.DeleteOrderById(id)
+	rid:= strconv.Itoa(id)
+	//if err != nil {
+	//	fmt.Println("error:", err)
+	//}
+
+	return this.RenderText("hi,"+rid)
+	//return this.RenderText(rid)
+}
 
 
 

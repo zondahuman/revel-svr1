@@ -85,14 +85,31 @@ func UpdateOrderInfo(modelInfo model.OrderInfo) {
 	fmt.Println("modelInfo=", modelInfo, "db=", db)
 	tx := db.Begin()
 
-	if err := tx.Update(&modelInfo).Error; err != nil {
+	if err := tx.Save(&modelInfo).Error; err != nil {
 		tx.Rollback()
 		panic(err)
 	}
 	tx.Commit()
 	db.Close()
 	fmt.Println("modelInfo=", modelInfo, ", db.Close()")
+}
 
+
+func DeleteOrderById(id int) {
+	fmt.Println("id=", id)
+	db := connect.Gdb
+	fmt.Println("id=", id, "db=", db)
+	tx := db.Begin()
+	var queryInfo model.OrderInfo
+	db.First(&queryInfo, id)
+	fmt.Println("id=", id, "queryInfo=", queryInfo)
+	if err := tx.Delete(&queryInfo).Error; err != nil {
+		tx.Rollback()
+		panic(err)
+	}
+	tx.Commit()
+	db.Close()
+	fmt.Println("id=", id, ", db.Close()")
 }
 
 
