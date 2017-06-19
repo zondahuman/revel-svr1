@@ -4,7 +4,7 @@ import (
 	"github.com/revel/revel"
 	"revel-svr1/app/service"
 	"fmt"
-	"encoding/json"
+	//"encoding/json"
 )
 
 
@@ -26,14 +26,15 @@ func (this OrderInfoController) OrderAdd(name string, age int) revel.Result {
 func (this OrderInfoController) FindOrderById(id int) revel.Result {
 	fmt.Println("id=",id)
 	modelInfo := service.FindOrderById(id)
-	json, err := json.Marshal(modelInfo)
-	fmt.Println("id=",id, "json=",json)
-	if err != nil {
-	    panic(err)
-	}
-	result := string(json)
-	fmt.Println("id=",id, "result=",result)
-	return this.RenderText(result)
+	//json, err := json.Marshal(modelInfo)
+	//fmt.Println("id=",id, "json=",json)
+	//if err != nil {
+	//    panic(err)
+	//}
+	//result := string(json)
+	//fmt.Println("id=",id, "result=",result)
+	//return this.RenderText(result)
+	return this.RenderJSON(&modelInfo)
 }
 
 
@@ -41,14 +42,15 @@ func (this OrderInfoController) FindOrderById(id int) revel.Result {
 func (this OrderInfoController) FindOrderAll(id int) revel.Result {
 	fmt.Println("id=",id)
 	modelInfoList := service.FindOrderAll()
-	json, err := json.Marshal(modelInfoList)
-	fmt.Println("id=",id, "json=",json)
-	if err != nil {
-	    panic(err)
-	}
-	result := string(json)
-	fmt.Println("id=",id, "result=",result)
-	return this.RenderText(result)
+	//json, err := json.Marshal(modelInfoList)
+	//fmt.Println("id=",id, "json=",json)
+	//if err != nil {
+	//    panic(err)
+	//}
+	//result := string(json)
+	//fmt.Println("id=",id, "result=",result)
+	//return this.RenderText(result)
+	return this.RenderJSON(&modelInfoList)
 }
 
 

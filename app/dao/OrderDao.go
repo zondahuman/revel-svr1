@@ -31,7 +31,7 @@ func AddOrderInfo1(modelInfo model.OrderInfo) {
 	} else {
 		tx.Rollback()
 	}
-	db.Close()
+	//db.Close()
 	fmt.Println("modelInfo=", modelInfo, ", flag", flag, "db.Close()")
 
 }
@@ -50,7 +50,7 @@ func AddOrderInfo(modelInfo model.OrderInfo) {
 		panic(err)
 	}
 	tx.Commit()
-	db.Close()
+	//db.Close()
 	fmt.Println("modelInfo=", modelInfo, ", db.Close()")
 
 }
@@ -64,7 +64,7 @@ func FindOrderById (id int) model.OrderInfo{
 	var orderInfo model.OrderInfo
 	db.First(&orderInfo, id)
 	tx.Commit()
-	db.Close()
+	//db.Close()
 	fmt.Println("orderInfo=", orderInfo, ", db.Close()")
 	return orderInfo
 }
@@ -76,7 +76,7 @@ func FindOrderAll () []model.OrderInfo{
 	var orderInfoList []model.OrderInfo
 	db.Find(&orderInfoList)
 	tx.Commit()
-	db.Close()
+	//db.Close()
 	fmt.Println("orderInfoList=", orderInfoList, ", db.Close()")
 	return orderInfoList
 }
@@ -92,7 +92,7 @@ func UpdateOrderInfo(modelInfo model.OrderInfo) {
 		panic(err)
 	}
 	tx.Commit()
-	db.Close()
+	//db.Close()
 	fmt.Println("modelInfo=", modelInfo, ", db.Close()")
 }
 
@@ -112,7 +112,7 @@ func DeleteOrderById(id int) base.BaseResponse {
 		baseResponse = base.BaseResponse{constants.FAILURE, constants.MESSAGE_FAILURE}
 	}
 	tx.Commit()
-	db.Close()
+	//db.Close()
 	fmt.Println("id=", id, ", db.Close()")
 	baseResponse = base.BaseResponse{constants.SUCCESS, constants.MESSAGE_SUCCESS}
 	return baseResponse

@@ -22,7 +22,7 @@ func Test_OrderAdd(t *testing.T) {
 }
 
 func Test_FindOrderById(t *testing.T) {
-	httpUrl := "http://localhost:9000/FindOrderById?id=72"
+	httpUrl := "http://localhost:9000/FindOrderById?id=75"
 
 	header := make(map[string]string)
 	header["Cookie"] = "JSESSION:1245566"
