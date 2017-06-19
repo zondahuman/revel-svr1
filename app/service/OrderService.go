@@ -4,6 +4,7 @@ import (
 	"time"
 	"revel-svr1/app/model"
 	"revel-svr1/app/dao"
+	"revel-svr1/app/pojo/base"
 )
 
 func AddOrderInfo(name string, age int)  {
@@ -31,8 +32,9 @@ func UpdateOrderInfo(id int, name string, age int, version int)  {
 	dao.UpdateOrderInfo(modelInfo)
 }
 
-func DeleteOrderById(id int)  {
-	dao.DeleteOrderById(id)
+func DeleteOrderById(id int) base.BaseResponse  {
+	baseResponse := dao.DeleteOrderById(id)
+	return baseResponse
 }
 
 

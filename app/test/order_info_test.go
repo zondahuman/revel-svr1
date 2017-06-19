@@ -58,7 +58,7 @@ func Test_UpdateOrderInfo(t *testing.T) {
 func Test_DeleteOrderById(t *testing.T) {
 	httpUrl := "http://localhost:9000/DeleteOrderById"
 	request := make(map[string]string)
-	request["id"] = "54"
+	request["id"] = "74"
 
 	header := make(map[string]string)
 	header["Cookie"] = "JSESSION:1245566"

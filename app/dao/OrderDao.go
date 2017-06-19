@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"revel-svr1/app/model"
 	"revel-svr1/app/connect"
+	"revel-svr1/app/pojo/base"
+	"revel-svr1/app/constants"
 )
 
 func AddOrderInfo1(modelInfo model.OrderInfo) {
@@ -95,7 +97,8 @@ func UpdateOrderInfo(modelInfo model.OrderInfo) {
 }
 
 
-func DeleteOrderById(id int) {
+func DeleteOrderById(id int) base.BaseResponse {
+	baseResponse := base.BaseResponse{constants.INIT, constants.MESSAGE_INIT}
 	fmt.Println("id=", id)
 	db := connect.Gdb
 	fmt.Println("id=", id, "db=", db)
@@ -106,10 +109,13 @@ func DeleteOrderById(id int) {
 	if err := tx.Delete(&queryInfo).Error; err != nil {
 		tx.Rollback()
 		panic(err)
+		baseResponse = base.BaseResponse{constants.FAILURE, constants.MESSAGE_FAILURE}
 	}
 	tx.Commit()
 	db.Close()
 	fmt.Println("id=", id, ", db.Close()")
+	baseResponse = base.BaseResponse{constants.SUCCESS, constants.MESSAGE_SUCCESS}
+	return baseResponse
 }
 
 
